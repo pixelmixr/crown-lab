@@ -1,0 +1,16 @@
+{
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "[json]": {
+      "editor.formatOnSave": true
+    },
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "workbench.colorCustomizations": {
+      "titleBar.activeBackground": "#bcf042",
+      "titleBar.inactiveBackground": "#bcf042cc",
+      "titleBar.activeForeground": "#000000",
+      "titleBar.inactiveForeground": "#000000cc"
+    }
+  }

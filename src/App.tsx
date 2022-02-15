@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Content } from './components/content/content'
+import { Contact } from './components/pages/contact'
+import { Join } from './components/pages/join'
+import { News } from './components/pages/news/news'
+import { People } from './components/pages/people/people'
+import { Research } from './components/pages/research'
+import { Splash } from './components/splash/splash'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Routes>
+        <Route path='/' element={<Splash />} />
+        <Route path='content' element={<Content />}>
+          <Route path='people' element={<People />} />
+          <Route path='news' element={<News />} />
+          <Route path='research' element={<Research />} />
+          <Route path='contact' element={<Contact />} />
+          <Route path='join' element={<Join />} />
+        </Route>
+      </Routes>
+    </Router>
+  )
 }
 
-export default App;
+export default App
