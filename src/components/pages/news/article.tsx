@@ -1,5 +1,7 @@
 import * as React from 'react'
+import ReactMarkdown from 'react-markdown'
 import styled from 'styled-components'
+import { rootUrl } from '../../../api/api'
 import { Article as ArticleModel } from '../../../models/article'
 
 export const Articles = styled.ul``
@@ -31,6 +33,17 @@ const ArticleContent = styled.div`
 
 type ArticleProps = ArticleModel
 
+const getSourceText = (src: string) => {
+  const urlRx = /^https?.*/
+  const match = urlRx.test(src)
+
+  if (!match) {
+    return `${rootUrl}/${src.replace(/^\//, '')}`
+  }
+
+  return src
+}
+
 const Article: React.FunctionComponent<ArticleProps> = ({ Title, PostDate, Content }) => (
   <StyledArticle>
     <ArticleHeader>
@@ -39,7 +52,9 @@ const Article: React.FunctionComponent<ArticleProps> = ({ Title, PostDate, Conte
         {PostDate.toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })}
       </ArticleHeaderSubtitle>
     </ArticleHeader>
-    <ArticleContent>{Content}</ArticleContent>
+    <ArticleContent>
+      <ReactMarkdown transformImageUri={getSourceText}>{Content}</ReactMarkdown>
+    </ArticleContent>
   </StyledArticle>
 )
 
